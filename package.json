@@ -1,7 +1,7 @@
 {
-  "name": "game-time-starter-kit",
+  "name": "robo-loader",
   "version": "1.0.0",
-  "description": "A starter kit for Turing School's Game Time project.",
+  "description": "A game where you play as a robot in a fac",
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/turingschool-examples/game-time-starter-kit.git"
+    "url": "https://github.com/HoffsMH/robo-loader.git"
   },
-  "author": "Steve Kinney",
+  "author": "Matthew Hecker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/turingschool-examples/game-time-starter-kit/issues"
+    "url": "https://github.com//HoffsMH/robo-loader/issues"
   },
-  "homepage": "https://github.com/turingschool-examples/game-time-starter-kit",
+  "homepage": "https://github.com//HoffsMH/robo-loader",
   "devDependencies": {
     "babel": "^5.8.3",
     "babel-core": "^5.7.4",
