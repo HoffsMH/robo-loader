@@ -17,4 +17,11 @@ describe('ConveyorArea object', function () {
 
   });
 
+  describe("ConveyorArea.lanes", function() {
+    it("should exist", function() {
+
+    });
+
+  });
+
 });
