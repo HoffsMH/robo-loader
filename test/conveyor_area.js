@@ -2,6 +2,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const ConveyorArea = require('../lib/conveyor_area');
+const Lane = require('../lib/lane');
 
 describe('ConveyorArea object', function () {
   let conveyorArea = new ConveyorArea();
@@ -18,7 +19,18 @@ describe('ConveyorArea object', function () {
   });
 
   describe("ConveyorArea.lanes", function() {
+    let lanes = conveyorArea.lanes;
+
     it("should exist", function() {
+      expect(lanes).to.not.be.undefined;
+    });
+
+    it("should be an array of lane objects", function() {
+      expect(lanes).to.be.an("Array");
+
+      lanes.forEach(function(lane) {
+        expect(lane.constructor).to.eq(Lane);
+      });
 
     });
 
