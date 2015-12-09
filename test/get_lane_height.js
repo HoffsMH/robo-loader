@@ -12,5 +12,19 @@ describe('getLaneHeight', function () {
     });
   });
 
+  context("when given laneheight and no count", function () {
+    let height = laneHeight(4);
+    it("returns NaN", function () {
+      expect(height).to.be.NaN;
+    });
+  });
+
+  context("when given no laneheight and no count", function () {
+    let height = laneHeight();
+    it("returns NaN", function () {
+      expect(height).to.be.NaN;
+    });
+  });
+
 
 });
