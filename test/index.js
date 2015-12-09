@@ -1,8 +1,8 @@
 const chai = require('chai');
-const assert = chai.assert;
+const expect = chai.expect;
 
 describe('my test suite', function () {
   it('should work', function () {
-    assert(true);
+    expect(true).to.eq(true);
   });
 });
