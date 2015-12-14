@@ -1,10 +1,5 @@
-const chai = require('chai');
-const expect = chai.expect;
-
-describe('my test suite', function () {
-
-  it('should work', function () {
-    expect(true).to.eq(true);
-  });
-
-});
+require('./board');
+require('./conveyor-area');
+require('./get-lane-starts.js');
+require('./lane');
+require('./loading-area');
