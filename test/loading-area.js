@@ -19,11 +19,11 @@ describe('Loading area object', function () {
     });
 
     it('should have a currently selected lane', function () {
-      expect(loadingArea.state.selectedLane).to.not.eq(undefined);
+      expect(loadingArea.selectedLane).to.not.eq(undefined);
     });
 
     it('should have a default selected lane of 0', function () {
-      expect(loadingArea.state.selectedLane).to.eq(0);
+      expect(loadingArea.selectedLane.state.laneIndex).to.eq(0);
     });
 
   });
@@ -32,7 +32,7 @@ describe('Loading area object', function () {
 
     context("when not on the last lane", function() {
       beforeEach(function(){
-        loadingArea.state.selectedLane = 0;
+        loadingArea.selectedLane = 0;
       });
 
       it("should increment the selected lane", function() {
@@ -40,22 +40,22 @@ describe('Loading area object', function () {
 
         loadingArea.laneUp();
 
-        expect(loadingArea.state.selectedLane).to.eq(prev_lane + 1);
+        expect(loadingArea.selectedLane).to.eq(prev_lane + 1);
       });
 
     });
 
     context("when on the last lane", function() {
       beforeEach(function() {
-        loadingArea.state.selectedLane = laneCount;
+        loadingArea.selectedLane = laneCount;
       });
 
       it("should not increment the selected lane", function() {
-        var prev_lane = loadingArea.state.selectedLane;
+        var prev_lane = loadingArea.selectedLane;
 
         loadingArea.laneUp();
 
-        expect(loadingArea.state.selectedLane).to.eq(prev_lane);
+        expect(loadingArea.selectedLane).to.eq(prev_lane);
       });
 
     });
@@ -66,30 +66,30 @@ describe('Loading area object', function () {
 
     context("when not on the first lane", function() {
       beforeEach(function() {
-        loadingArea.state.selectedLane = laneCount;
+        loadingArea.selectedLane = laneCount;
       });
 
       it("should decrement the selected lane", function() {
-        var prev_lane = loadingArea.state.selectedLane;
+        var prev_lane = loadingArea.selectedLane;
 
         loadingArea.laneDown();
 
-        expect(loadingArea.state.selectedLane).to.eq(prev_lane - 1);
+        expect(loadingArea.selectedLane).to.eq(prev_lane - 1);
       });
 
     });
 
     context("when on the first lane", function() {
       beforeEach(function() {
-        loadingArea.state.selectedLane = 0;
+        loadingArea.selectedLane = 0;
       });
 
       it("should not decrement the selected lane", function() {
-        var prev_lane = loadingArea.state.selectedLane;
+        var prev_lane = loadingArea.selectedLane;
 
         loadingArea.laneDown();
 
-        expect(loadingArea.state.selectedLane).to.eq(prev_lane);
+        expect(loadingArea.selectedLane).to.eq(prev_lane);
       });
 
     });
