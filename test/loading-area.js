@@ -28,39 +28,4 @@ describe('Loading area object', function () {
 
   });
 
-  describe("loadingArea.laneUp()", function() {
-
-    context("when not on the last lane", function() {
-      beforeEach(function(){
-        loadingArea.selectedLane = 0;
-      });
-
-      it("should increment the selected lane", function() {
-        var prev_lane = loadingArea.state.selectedLane;
-
-        loadingArea.laneUp();
-
-        expect(loadingArea.selectedLane).to.eq(prev_lane + 1);
-      });
-
-    });
-
-    context("when on the last lane", function() {
-      beforeEach(function() {
-        loadingArea.selectedLane = laneCount;
-      });
-
-      it("should not increment the selected lane", function() {
-        var prev_lane = loadingArea.selectedLane;
-
-        loadingArea.laneUp();
-
-        expect(loadingArea.selectedLane).to.eq(prev_lane);
-      });
-
-    });
-
-
-  });
-
 });
