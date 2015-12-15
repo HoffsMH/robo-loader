@@ -5,8 +5,6 @@ const LoadingArea = require('../lib/loading_area');
 
 describe('Loading area object', function () {
   let loadingArea = new LoadingArea();
-  let laneCount = loadingArea.settings.laneCount;
-
 
   it('should be an object', function () {
     expect(loadingArea).to.be.a("Object");
