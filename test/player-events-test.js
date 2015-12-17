@@ -155,8 +155,8 @@ describe('PlayerEvents', function () {
 
     });
 
-    context("when the game is in", function() {
-      it("does nothing", function() {
+    context("when the game is in progress", function() {
+      it("puts down some blobs", function() {
         game.state.inProgress = true;
         expect(game.playerEvents.putBlobs()).to.not.eq(false);
 
