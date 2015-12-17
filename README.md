@@ -13,20 +13,20 @@ so I tried to distill the basic mechanics of this minigame into a javascript can
 ##### Things like
 * pacing
 * difficulty
-* depth(har har)
+* depth
 
 ### Basics:
-You work in a factory that has a number(4 in this picture) of horizontal Lanes. Inside of each is a "conveyor belt" with a number of cells. The cells move to the left and carry whatever is on them to the right end of the screen.
+You work in a factory that has a number of horizontal Lanes(4 in this picture). Inside of each is a "conveyor belt" with a number of cells. The cells move to the right and carry whatever is on them to the right end of the screen.
 
 On the left side of the screen is a "Loading Area" where we can put a certain amount of "stuff" down on a given Conveyor Belt.
 
 Current picture shows that the loading area will put down 3 cells worth of yellow "stuff"
 
- ![hi](basic-game.png)
+ ![basic game](basic-game.png)
 
  Here we just put down 3 red blobs worth of stuff. The numbers on the left mean that the next time we put down a red stuff on that lane we will only put down 2 blobs worth of red stuff.
 
- ![hi](red-3-game.png)
+ ![red 3](red-3-game.png)
 
 
 
