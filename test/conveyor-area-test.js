@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const ConveyorArea = require('../lib/conveyor_area');
+const ConveyorArea = require('../lib/conveyor-area');
 const Lane = require('../lib/lane');
 
 describe('ConveyorArea object', function () {
