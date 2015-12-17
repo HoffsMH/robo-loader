@@ -1,3 +1,4 @@
+const _ = require("lodash");
 const chai = require('chai');
 const expect = chai.expect;
 
@@ -135,6 +136,36 @@ describe('PlayerEvents', function () {
 
         expect(game.getCurrentColorIndex()).to.eq(game.settings.colors.length - 1);
       });
+
+    });
+
+  });
+
+  describe("putBlobs", function(){
+    context("when the game is not in progress", function() {
+      it("does nothing", function() {
+        expect(game.playerEvents.putBlobs()).to.eq(false);
+
+        _.each(game.getBlobCells(), function(cell) {
+          expect(cell.colorBlob).to.be.undefined
+        }.bind(this));
+
+      });
+
+
+    });
+
+    context("when the game is in", function() {
+      it("does nothing", function() {
+        game.state.inProgress = true;
+        expect(game.playerEvents.putBlobs()).to.not.eq(false);
+
+        _.each(game.getBlobCells(), function(cell) {
+          expect(cell.state.children.colorBlob).to.not.be.undefined
+        }.bind(this));
+
+      });
+
 
     });
 
