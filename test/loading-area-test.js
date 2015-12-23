@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const LoadingArea = require('../lib/loading_area');
+const LoadingArea = require('../lib/loading-area');
 
 describe('Loading area object', function () {
   let loadingArea = new LoadingArea();

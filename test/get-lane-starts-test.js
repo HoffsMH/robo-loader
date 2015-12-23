@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const getLaneStarts = require('../lib/util/get_lane_starts');
+const getLaneStarts = require('../lib/util/get-lane-starts');
 
 describe('getLaneHeight', function () {
   let laneStarts = getLaneStarts;

@@ -1,3 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
+
 body {
-  
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  background: #E8DED2;
+}
+div.title {
+  font-size: 30px;
+
+}
+div.header {
+  font-size: 20px;
+  min-height: 40px;
+}
+
+div.score {
+  min-height: 40px;
+  font-size: 30px;
+}
+
+canvas {
+  background: black;
+}
+
+canvas {
+  display: inline-block;
+  margin: auto;
 }
