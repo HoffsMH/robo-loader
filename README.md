@@ -1,7 +1,6 @@
 ## Game within a game
 
-A common thing seen in video games is that their parts of their mechanics can be considered modular.
-Think (a Game within a Game, ... Gameception).
+A common thing seen in video games is that their parts of their mechanics can be considered modular and a game in and of itself.
 A real life parallel might be that you are walking down the street while trying to go somewhere (the game as a whole),
 you have to watch your feet and avoid stepping in slosh puddles(the mini-game).
 
