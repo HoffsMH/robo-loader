@@ -29,11 +29,15 @@ The Above picture shows that the loading area will put down 3 cells worth of yel
 
  Here we just put down 3 red blobs worth of material. The numbers on the left mean that the next time we put down a red material on that lane we will only put down 2 blobs worth of red material.
 
- The white boxes represent the workers in this factory. The workers will move up the lanes to the left if they have nothing to work on. If a single worker reaches the loading area the game is over.
+ Lets look at the next game mechanic...
 
- 
+ ![workers intro](workers-intro-game.gif)
+
+ The white boxes represent the workers in this factory. The workers will move across the lanes to the left if they have nothing to work on. If a single worker reaches the loading area the game is over.
+
 
  By putting down material in a lane for a worker to work on, you impede its progress towards the loading area.
+
 
 
 
