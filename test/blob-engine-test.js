@@ -57,10 +57,10 @@ describe('blob engine object', function () {
   describe("clearDr()", function() {
     context("no matter what", function() {
       it("should clear out th dr for the given color and lane", function() {
-        var currentDrs =
-        var colorIndex =
-        var laneIndex  = 
-        var counter    =
+        // var currentDrs =
+        // var colorIndex =
+        // var laneIndex  =
+        // var counter    =
       });
     });
   });
