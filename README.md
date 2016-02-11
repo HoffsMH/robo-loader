@@ -1,46 +1,46 @@
 ## Robo-loader
 
-A common thing seen in video games is that their parts of their mechanics can be seen as modular and a game all by itself.
-A real life parallel might be that you are walking down the street while trying to go somewhere (the game as a whole), and
-you have to watch your feet and avoid stepping on cracks(the mini-game).
+
+A common thing seen in video games is that parts of their mechanics can be seen as modular and a game all in and of themselves.
+A real life example of this might be that you are walking down the street while trying to go somewhere (the game as a whole), and
+you have to watch your feet and avoid stepping on cracks(mini-game).
 
 #### So I really like World of Warcraft.
 And WoW has such a mini-game.
 Game balancing also really interest me too
-so I tried to distill the basic mechanics of this mini-game into a javascript canvas game. so I could turn some knobs and see how they affect the way it plays.
+so I tried to distill the basic mechanics of this of this mini-game into a javascript canvas game. so I could turn some knobs and see how they affect the way it plays.
 
 ##### The things I was interested in were:
 * pacing
 * difficulty
 * depth
 
-Before we get too far into the things I've learned I would help to explain the game itself. The game can be played [here](/robo-loader). Please note the game might look different now than at the time of this post but the basic mechanics will still be in place.
+The game can be played [here](/robo-loader). Please note the game might look different now than at the time of this post but the basic mechanics will still be in place.
 
 ### Basics:
-You work in a factory that has a number of horizontal Lanes(4 in this picture). Inside of each is a "conveyor belt" with a number of cells. The cells move to the right and from the left and carry whatever is on them.
+You are a robot that works in a factory that has a number of horizontal Lanes( 4 in this picture). Inside of each is a "conveyor belt" with a number of cells. The cells move to the right and carry whatever is placed on them.
 
-![basic game](basic-game.gif)
+![basic game](images/tutorial/basic-game.gif)
 
 On the left side of the screen is a "Loading Area" where we can put a certain amount of "material" down on a given Conveyor Belt.
 
-The Above picture shows that the loading area will put down 3 cells worth of yellow "material"
-
-![red 3](red-3-game.gif)
+![red 3](images/tutorial/red-3-game.gif)
 
  Here we just put down 3 red blobs worth of material. The numbers on the left mean that the next time we put down a red material on that lane we will only put down 2 blobs worth of red material.
 
  Lets look at the next game mechanic...
 
- ![workers intro](workers-intro-game.gif)
+ ![workers intro](images/tutorial/workers-intro-game.gif)
 
- The white boxes represent the workers in this factory. The workers will move across the lanes to the left if they have nothing to work on. If a single worker reaches the loading area the game is over.
+ The white boxes represent the workers in this factory. The workers will move to the left while they have nothing to work on. If a single worker reaches the loading area the game is over.
 
+By putting down material on a conveyor belt for a lane worker to work on you impede its progress towards the loading area.
 
- By putting down material on a conveyor belt for a lane worker to work on you impede its progress towards the loading area.
+ ![blob intro](images/tutorial/blob-intro.gif)
 
-You might have noticed that there are 2 sets of numbers on the left. The big number, as I mentioned before represents how many blobs of material you would place on the given conveyor belt if you were to press enter. The second smaller set of numbers is a counter that counts down till you can place the maximum amount of blobs again.
+You might have noticed that there are 2 sets of numbers on the left. The big number, as I mentioned before, represents how many blobs of material you would place on the given conveyor belt if you were to press enter. The second smaller set of numbers is a counter that counts down till you can place the maximum amount of blobs again.
 
-So for instance I see the number 3, and the color yellow, and I have the first lane selected. I press enter and..., 3 yellow blobs are placed on the first lane and then I see 2 and a counters starts counting down from 30 seconds. That means that after 30 seconds have passed the counter reset and I will be able to place 3 yellow blobs at a time on that lane.
+For instance I see the number 3, and the color green, and I have the fourth lane selected, I press enter and... 3 green blobs are placed on the first lane and then I see 2 and a counters starts counting down from 35 seconds. That means that after 35 seconds have passed the counter reset and I will be able to place 3 green blobs at a time on that lane.
 
 We are now approaching the center of what this game is really about, managing diminishing returns. Something that has a diminishing return means I get a decreased effect from doing the same thing repeatedly. In order to keep the workers from getting to the left side of the screen I need to think about what lanes and color combinations are available to me at a given time.
 
