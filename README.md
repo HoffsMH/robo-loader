@@ -1,5 +1,6 @@
 ## Robo-loader
 
+[github](https://github.com/HoffsMH/robo-loader)
 
 A common thing seen in video games is that parts of their mechanics can be seen as modular and a game all in and of themselves.
 A real life example of this might be that you are walking down the street while trying to go somewhere (the game as a whole), and
@@ -46,6 +47,17 @@ We are now approaching the center of what this game is really about, managing di
 
 For instance I might be out of yellow blobs on lane 1 but I have plenty red blobs left on that lane, and I might be out of red blobs on lane 2 but I have plenty of yellow blobs left on that lane. A few seconds later that situation may reverse and I have to keep track of that.
 
-#### one more small thing:
+#### One more thing:
 
-Lets say that all conveyor belts have 12 cells on which we can place blobs. If I put a Yellow blob on cell 1 of lane 2 all other lanes's cell 1 are cleared of yellow blobs. If I put a yellow blob on lane 1 and imeadiately afterwards try to put a yellow blob on lane 2 the yellow blob on lane 2 will erase the yellow blob on lane 1.
+Lets say that all conveyor belts have 12 cells on which we can place blobs. If I put a Yellow blob on cell 1 of lane 2 that means that all other lanes's cell 1 are cleared of yellow blobs. If I put a yellow blob on lane 1 and immediately afterwards put a yellow blob on lane 2 the yellow blob on lane 1 will disappear.
+
+When taken together the game is about juggling different colors on different lanes in order to keep the workers from reaching the end.
+
+pic of average gameplay here
+
+#### Tweaking it:
+I tried to write this
+
+#### Lessons learned:
+
+It was surprisingly easy to balance! the hard part was to end
