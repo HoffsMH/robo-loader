@@ -40,7 +40,7 @@ Lets say that all conveyor belts have 12 cells on which we can place blobs. If I
 
 When taken together the game is about juggling different colors on different lanes in order to keep the workers from reaching the end.
 
-pic of average gameplay here
+![blob intro](images/tutorial/average-game.gif)
 
 #### tweaking it:
 
