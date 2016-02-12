@@ -1,21 +1,9 @@
 ## Robo-loader
-[github](https://github.com/HoffsMH/robo-loader)
-
-A common thing seen in video games is that parts of their mechanics can be seen as modular and a game all in and of themselves.
-A real life example of this might be that you are walking down the street while trying to go somewhere (the game as a whole), and
-you have to watch your feet and avoid stepping on cracks(mini-game).
-
-#### So I really like World of Warcraft.
-And WoW has such a mini-game.
-Game balancing also really interest me too
-so I tried to distill the basic mechanics of this of this mini-game into a javascript canvas game. so I could turn some knobs and see how they affect the way it plays.
-
-##### The things I was interested in were:
-* pacing
-* difficulty
-* depth
-
-The game can be played [here](/robo-loader). Please note the game might look different now than at the time of this post but the basic mechanics will still be in place.
+### Installation:
+```sh
+npm install
+npm start
+```
 
 ### Basics:
 You are a robot that works in a factory that has a number of horizontal Lanes( 4 in this picture). Inside of each is a "conveyor belt" with a number of cells. The cells move to the right and carry whatever is placed on them.
@@ -54,15 +42,8 @@ When taken together the game is about juggling different colors on different lan
 
 pic of average gameplay here
 
-#### Tweaking it:
-I tried to write this in such a way that changing certain aspects of the game would be easy. I did this by creating engines that would update and render the game  generically, regardless of their structure or settings. I then created a default settings file called ```lib/game-settings/board-settings``` that contained everything about the game that could be changed. All of the game component's properties were set by the contents of this file so that if I wanted to change something like
-* amount of lanes
-* amount of cells to a lane
-* how long before diminsing returns reset
-* how fast workers moved up the lane
-* how long it took for a worker to clear a single blob
+#### tweaking it:
 
+Most aspects of the game can be changed in the file
 
-#### Lessons learned:
-
-It was surprisingly easy to balance! the hard part was to end
+``` lib/game-settings/board-settings.js ```
