@@ -1,5 +1,4 @@
 ## Robo-loader
-
 [github](https://github.com/HoffsMH/robo-loader)
 
 A common thing seen in video games is that parts of their mechanics can be seen as modular and a game all in and of themselves.
@@ -56,7 +55,13 @@ When taken together the game is about juggling different colors on different lan
 pic of average gameplay here
 
 #### Tweaking it:
-I tried to write this
+I tried to write this in such a way that changing certain aspects of the game would be easy. I did this by creating engines that would update and render the game  generically, regardless of their structure or settings. I then created a default settings file called ```lib/game-settings/board-settings``` that contained everything about the game that could be changed. All of the game component's properties were set by the contents of this file so that if I wanted to change something like
+* amount of lanes
+* amount of cells to a lane
+* how long before diminsing returns reset
+* how fast workers moved up the lane
+* how long it took for a worker to clear a single blob
+
 
 #### Lessons learned:
 

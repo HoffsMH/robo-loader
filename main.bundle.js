@@ -9304,6 +9304,7 @@
 
 	function Board(settings) {
 	  this.settings = settings || boardSettings();
+	  var conveyorArea = new ConveyorArea();
 	  this.state = {
 	    changed: true,
 	    inProgress: false,
@@ -9318,7 +9319,7 @@
 	      lineWidth: this.settings.lineWidth,
 	      strokeStyle: this.settings.lineWidth
 	    },
-	    children: { conveyorArea: new ConveyorArea(),
+	    children: { conveyorArea: conveyorArea,
 	      loadingArea: new LoadingArea()
 	    }
 	  };
@@ -9331,6 +9332,7 @@
 	  this.loadingArea = this.state.children.loadingArea;
 	  this.selectedLane = this.loadingArea.selectedLane;
 	  this.drCounters = this.selectedLane.state.drCounters;
+	  this.counters = [];
 	}
 
 	extend(Board.prototype, incGet);
@@ -9344,7 +9346,7 @@
 	  return this.loadingArea.getCurrentLaneIndex();
 	};
 
-	Board.prototype.getCurrentDrs = function () {
+	Board.prototype.getCurrentLaneDrs = function () {
 	  return this.getCurrentLane().currentDrs;
 	};
 
@@ -9353,7 +9355,7 @@
 	};
 
 	Board.prototype.getNextBlobAmount = function () {
-	  var currentDrs = this.getCurrentDrs();
+	  var currentDrs = this.getCurrentLaneDrs();
 	  var colorIndex = this.getCurrentColorIndex();
 
 	  return this.settings.drCategories[currentDrs[colorIndex]];
@@ -9370,8 +9372,18 @@
 	};
 
 	Board.prototype.reset = function () {
-	  this.state["children"].conveyorArea = new ConveyorArea();
+	  this.state.children.conveyorArea = new ConveyorArea();
 	  this.conveyorArea = this.state.children.conveyorArea;
+	  this.lanes = this.conveyorArea.lanes;
+
+	  this.state.children.loadingArea = new LoadingArea();
+	  this.loadingArea = this.state.children.loadingArea;
+	  this.selectedLane = this.loadingArea.selectedLane;
+	  this.drCounters = this.selectedLane.state.drCounters;
+
+	  _.each(this.counters, function (counter) {
+	    clearInterval(counter);
+	  });
 
 	  this.state.score = 0;
 	};
@@ -22120,6 +22132,7 @@
 
 	function ConveyorArea(settings) {
 	  this.settings = settings || conveyorAreaSettings();
+	  var lanes = this.getLanes(this.settings.laneCount);
 	  this.state = {
 	    selectedColor: 0,
 	    changed: true,
@@ -22133,9 +22146,9 @@
 	      lineWidth: this.settings.lineWidth,
 	      strokeStyle: this.settings.lineWidth
 	    },
-	    children: this.getLanes(this.settings.laneCount)
+	    children: lanes
 	  };
-	  this.lanes = this.state.children;
+	  this.lanes = lanes;
 	}
 
 	ConveyorArea.prototype.getLanes = function (laneCount) {
@@ -22616,10 +22629,13 @@
 	BlobEngine.prototype.putBlobs = function () {
 	  var cells = this.game.getBlobCells();
 
+	  //put the blobs down and increment the dr
 	  _.each(cells, this.putBlob.bind(this));
 	  this.incrementDr(this.game);
 
-	  _.each(this.game.conveyorArea.lanes, (function (lane) {
+	  // clear all cells on the same level with the same color
+	  // getBlobCells().length() number from OTHER lanes
+	  _.each(this.game.lanes, (function (lane) {
 	    if (lane.state.laneIndex === this.game.getCurrentLaneIndex()) {
 	      return true;
 	    }
@@ -22645,20 +22661,20 @@
 	};
 
 	BlobEngine.prototype.incrementDr = function () {
-	  var currentDrs = this.game.getCurrentDrs();
+	  var currentLaneDrs = this.game.getCurrentLaneDrs();
 	  var colorIndex = this.game.getCurrentColorIndex();
 	  var laneIndex = this.game.getCurrentLaneIndex();
 
-	  if (this.checkForFreshDr(currentDrs, colorIndex)) {
-	    this.applyFreshDr(currentDrs, colorIndex, laneIndex);
+	  if (this.thereIsFreshDr(currentLaneDrs, colorIndex)) {
+	    this.applyFreshDr(currentLaneDrs, colorIndex, laneIndex);
 	  }
-	  currentDrs[colorIndex] += 1;
+	  currentLaneDrs[colorIndex] += 1;
 	  this.game.selectedLane.decrementBlobAmount();
 	};
 
-	BlobEngine.prototype.applyFreshDr = function (currentDrs, colorIndex, laneIndex) {
+	BlobEngine.prototype.applyFreshDr = function (currentLaneDrs, colorIndex, laneIndex) {
 	  this.setCounter(colorIndex, laneIndex);
-	  this.startCounter(currentDrs, colorIndex, laneIndex);
+	  this.startCounter(currentLaneDrs, colorIndex, laneIndex);
 	};
 
 	BlobEngine.prototype.setCounter = function (colorIndex, laneIndex) {
@@ -22673,6 +22689,7 @@
 	      this.clearDr(currentDrs, colorIndex, laneIndex, counter);
 	    }
 	  }).bind(this), 1000);
+	  this.game.counters.push(counter);
 	};
 
 	BlobEngine.prototype.clearDr = function (currentDrs, colorIndex, laneIndex, counter) {
@@ -22685,7 +22702,7 @@
 	  return this.game.drCounters[colorIndex][laneIndex] <= 0;
 	};
 
-	BlobEngine.prototype.checkForFreshDr = function (currentDrs, colorIndex) {
+	BlobEngine.prototype.thereIsFreshDr = function (currentDrs, colorIndex) {
 	  return !currentDrs[colorIndex];
 	};
 
@@ -22847,7 +22864,6 @@
 	  var canvasEngine = new CanvasEngine(this.canvas);
 	  var updateEngine = new UpdateEngine(game);
 	  requestAnimationFrame((function gameLoop() {
-
 	    canvasEngine.render(game);
 	    updateEngine.update(game);
 	    if (game.state.inProgress) {
@@ -22988,7 +23004,7 @@
 
 	LaneWorkerEngine.prototype.update = function (laneWorker) {
 	  if (laneWorker.getBase("x") <= this.game.settings.conveyorAreaStart) {
-	    this.game.state.inProgress = true;
+	    this.game.state.inProgress = false;
 	    $(".header").html("LOSE! Press enter to restart.");
 	  }
 	  if (laneWorker.state.working) {
@@ -23114,10 +23130,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js!./style.scss\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var content = __webpack_require__(37);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(38)(content, {});
+	var update = __webpack_require__(39)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -23134,8 +23150,77 @@
 	}
 
 /***/ },
-/* 37 */,
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(38)();
+	// imports
+	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);", ""]);
+
+	// module
+	exports.push([module.id, "body {\n  text-align: center;\n  font-family: 'Press Start 2P', cursive;\n  background: #E8DED2; }\n\ndiv.title {\n  font-size: 30px; }\n\ndiv.header {\n  font-size: 20px;\n  min-height: 40px; }\n\ndiv.score {\n  min-height: 40px;\n  font-size: 30px; }\n\ncanvas {\n  background: black; }\n\ncanvas {\n  display: inline-block;\n  margin: auto; }\n", ""]);
+
+	// exports
+
+
+/***/ },
 /* 38 */
+/***/ function(module, exports) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function() {
+		var list = [];
+
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for(var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if(item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+
+		// import a list of modules into the list
+		list.i = function(modules, mediaQuery) {
+			if(typeof modules === "string")
+				modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for(var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if(typeof id === "number")
+					alreadyImportedModules[id] = true;
+			}
+			for(i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if(mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if(mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+
+/***/ },
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
