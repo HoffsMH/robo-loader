@@ -8,17 +8,17 @@ describe('blob engine object', function () {
   let game =  new Board();
   let blobEngine = new BlobEngine(game);
 
-  describe("checkforFreshDr()", function() {
+  describe("thereIsFreshDr()", function() {
     it("returns true if the given color is on dr on the given lane", function() {
       var currentDrs = [2,0,0];
       var colorIndex = 0;
 
-      expect(blobEngine.checkForFreshDr(currentDrs, colorIndex)).to.eq(false);
+      expect(blobEngine.thereIsFreshDr(currentDrs, colorIndex)).to.eq(false);
 
       currentDrs = [0,0,0];
       colorIndex = 0;
 
-      expect(blobEngine.checkForFreshDr(currentDrs, colorIndex)).to.eq(true);
+      expect(blobEngine.thereIsFreshDr(currentDrs, colorIndex)).to.eq(true);
     });
 
   });
