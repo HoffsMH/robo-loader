@@ -27,3 +27,23 @@ canvas {
   display: inline-block;
   margin: auto;
 }
+
+div.instructions   {
+  margin: auto;
+  width: 997px;
+  h3 {
+    margin-top: 20px;
+    margin-bottom: 3  0px;
+  }
+  li {
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  h4 {
+    font-size: 20px;
+    text-align: left;
+  }
+
+}
