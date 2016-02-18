@@ -23158,7 +23158,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Press+Start+2P);", ""]);
 
 	// module
-	exports.push([module.id, "body {\n  text-align: center;\n  font-family: 'Press Start 2P', cursive;\n  background: #E8DED2; }\n\ndiv.title {\n  font-size: 30px; }\n\ndiv.header {\n  font-size: 20px;\n  min-height: 40px; }\n\ndiv.score {\n  min-height: 40px;\n  font-size: 30px; }\n\ncanvas {\n  background: black; }\n\ncanvas {\n  display: inline-block;\n  margin: auto; }\n", ""]);
+	exports.push([module.id, "body {\n  text-align: center;\n  font-family: 'Press Start 2P', cursive;\n  background: #E8DED2; }\n\ndiv.title {\n  font-size: 30px; }\n\ndiv.header {\n  font-size: 20px;\n  min-height: 40px; }\n\ndiv.score {\n  min-height: 40px;\n  font-size: 30px; }\n\ncanvas {\n  background: black; }\n\ncanvas {\n  display: inline-block;\n  margin: auto; }\n\ndiv.instructions {\n  margin: auto;\n  width: 997px; }\n  div.instructions h3 {\n    margin-top: 20px;\n    margin-bottom: 3  0px; }\n  div.instructions li {\n    text-align: left;\n    margin-top: 15px;\n    margin-bottom: 15px; }\n  div.instructions h4 {\n    font-size: 20px;\n    text-align: left; }\n", ""]);
 
 	// exports
 
