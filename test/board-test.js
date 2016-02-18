@@ -43,7 +43,7 @@ describe('Board object', function () {
 
   });
 
-  describe("getCurrentDrs", function() {
+  describe("getCurrentLaneDrs", function() {
     context("when there are no drs", function() {
       it("should get the currently set of drs", function() {
         var noDrs = [];
@@ -55,7 +55,7 @@ describe('Board object', function () {
 
         _.each(noDrs, function(dr, index) {
 
-          expect(board.getCurrentDrs()[index]).to.eq(dr);
+          expect(board.getCurrentLaneDrs()[index]).to.eq(dr);
 
         }.bind(this));
       });
@@ -64,14 +64,14 @@ describe('Board object', function () {
 
   });
 
-  describe("getCurrentDrs", function() {
+  describe("getCurrentLaneDrs", function() {
     context("when there are drs", function() {
       it("should get the currently set of drs", function() {
         var drs = [1,0,0];
         board.getCurrentLane().state.currentDrs[0] = 1;
 
         _.each(drs, function(dr, index) {
-          expect(board.getCurrentDrs()[index]).to.eq(dr);
+          expect(board.getCurrentLaneDrs()[index]).to.eq(dr);
         }.bind(this));
       });
 
